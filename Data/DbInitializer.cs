@@ -13,8 +13,8 @@ namespace mvcapppojisteniverze02.Data
 
             var klienti = new Klient[]
             {
-                new Klient{Jmeno="Martin", Prijmeni="Kára",Telefon=123},
-                new Klient{Jmeno="Aleš",Prijmeni="Bláha",Telefon=456},
+                new Klient{Jmeno="Martin", Prijmeni="Kára",Telefon=123,Email="martin.kara@volny.cz",Ulice="Lábkova 25",Mesto="Plzeň",Psc="318 06"},
+                new Klient{Jmeno="Aleš",Prijmeni="Bláha",Telefon=456,Email="blaha.ales@seznam.cz",Ulice="Slovanská 254", Mesto="Plzeň", Psc="316 00"},
             };
 
             context.Klienti.AddRange(klienti);

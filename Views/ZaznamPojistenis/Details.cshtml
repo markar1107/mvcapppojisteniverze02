@@ -1,43 +1,47 @@
 ﻿@model mvcapppojisteniverze02.Models.ZaznamPojisteni
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detaily pojištění";
 }
 
-<h1>Details</h1>
+<br />
+<p class="h3">Detaily pojištění</p>
+<hr />
 
 <div>
-    <h4>ZaznamPojisteni</h4>
-    <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cena)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cena)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZacatekPojisteni)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZacatekPojisteni)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KonecPojisteni)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KonecPojisteni)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-2">
             @Html.DisplayNameFor(model => model.Klient)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Klient.ID)
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Klient.Jmeno)
+            @Html.DisplayFor(model => model.Klient.Prijmeni)
         </dd>
-        <dt class = "col-sm-2">
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ZacatekPojisteni)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ZacatekPojisteni)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KonecPojisteni)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KonecPojisteni)
+        </dd>
+        
+        
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Produkt)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Produkt.ProduktID)
         </dd>
     </dl>

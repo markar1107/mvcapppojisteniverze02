@@ -59,7 +59,7 @@ namespace mvcapppojisteniverze02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Jmeno,Prijmeni,Telefon")] Klient klient)
+        public async Task<IActionResult> Create([Bind("ID,Jmeno,Prijmeni,Telefon,Email,Ulice,Mesto,Psc")] Klient klient)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace mvcapppojisteniverze02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Jmeno,Prijmeni,Telefon")] Klient klient)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Jmeno,Prijmeni,Telefon,Email,Ulice,Mesto,Psc")] Klient klient)
         {
             if (id != klient.ID)
             {

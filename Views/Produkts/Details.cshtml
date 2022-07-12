@@ -1,30 +1,34 @@
 ﻿@model mvcapppojisteniverze02.Models.Produkt
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detail produktu";
 }
 
-<h1>Details</h1>
-
+<br />
+<p class="h3">Detail produktu</p>
 <div>
-    <h4>Produkt</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-2">
             @Html.DisplayNameFor(model => model.Nazev)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-10">
             @Html.DisplayFor(model => model.Nazev)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-2">
             @Html.DisplayNameFor(model => model.Popis)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-10">
             @Html.DisplayFor(model => model.Popis)
         </dd>
     </dl>
 </div>
+<div class="text-center">
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ProduktID">Editovat</a> |
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.ProduktID">Odstranit</a>
+</div>
+<hr />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ProduktID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam produktů</a>
+
 </div>

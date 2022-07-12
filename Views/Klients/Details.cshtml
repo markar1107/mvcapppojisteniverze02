@@ -1,62 +1,95 @@
 ﻿@model mvcapppojisteniverze02.Models.Klient
 
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = "Detail klienta";
 }
 
-<h1>Detail</h1>
+<br />
+
+<div class="row">
+    <div class="col-2">
+        <img src="~/icons/icon_person.png" width="75%" />
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <p class="h3">
+                @Html.DisplayFor(model => model.Jmeno)
+                @Html.DisplayFor(model => model.Prijmeni)
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p>
+                    @Html.DisplayFor(model => model.Ulice)
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.Mesto)
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.Psc)
+                </p>
+            </div>
+            <div class="col">
+                <p>
+                    @Html.DisplayFor(model => model.Email)
+                </p>
+                <p>
+                    @Html.DisplayFor(model => model.Telefon)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 <div>
-    <h4>Klient</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Jmeno)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Jmeno)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Prijmeni)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Prijmeni)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefon)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefon)
-        </dd>
+
         <dt class="col sm-2">
             @Html.DisplayNameFor(model => model.ZaznamPojisteniKolekce)
         </dt>
         <dd class="col-sm-10">
-            <table class="table">
-                <tr>
-                    <th>Název</th>
-                    <th>Popis</th>
-                    <th>Cena</th>
-                    <th>Začátek pojištění</th>
-                    <th>Konec pojištění</th>
-                </tr>
-                @foreach(var polozka in Model.ZaznamPojisteniKolekce)
+            <table border="1" class="table table-hover table-bordered border-2">
+                <thead>
+                    <tr class="bg-light">
+                        <th class="col">Název</th>
+
+                        @*<th>Předmět pojištění</th>*@
+                        <th class="col-2">Cena</th>
+                        @*<th>Začátek pojištění</th>*@
+                        @*<th>Konec pojištění</th>*@
+                        <th class="col-2"></th>
+                    </tr>
+                </thead>
+
+                @foreach (var polozka in Model.ZaznamPojisteniKolekce)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelPolozka => polozka.Produkt.Nazev)
+                            <strong>
+                                <a asp-controller="ZaznamPojistenis" asp-action="Details" asp-route-id="@polozka.ZaznamPojisteniID">
+                                    @Html.DisplayFor(modelPolozka => polozka.Produkt.Nazev)
+                                </a>
+                            </strong>
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelPolozka => polozka.Produkt.Popis)
-                        </td>
+                        @*<td>
+                    @Html.DisplayFor(modelPolozka => polozka.Produkt.Popis)
+                    </td>*@
                         <td>
                             @Html.DisplayFor(modelPolozka => polozka.Cena)
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelPolozka => polozka.ZacatekPojisteni)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelPolozka => polozka.KonecPojisteni)
+                        @*<td>
+                    @Html.DisplayFor(modelPolozka => polozka.ZacatekPojisteni)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelPolozka => polozka.KonecPojisteni)
+                    </td>*@
+                        <td class="text-center">
+                            <a class="btn btn-warning btn-sm" asp-controller="ZaznamPojistenis" asp-action="Edit" asp-route-id="@Model?.ID">Editovat</a> |
+                            <a class="btn btn-danger btn-sm" asp-controller="ZaznamPojistenis" asp-action="Delete" asp-route-id="@Model?.ID">Odstranit</a>
                         </td>
                     </tr>
                 }
@@ -64,8 +97,13 @@
         </dd>
     </dl>
 </div>
+<div class="text-center">
+    <a class="btn btn-primary" asp-controller="ZaznamPojistenis" asp-action="Create" asp-route-id="@Model?.ID">Přidat pojištění</a> |
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ID">Editace klienta</a> |
+    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.ID">Odstranit klienta</a>
+</div>
+<hr />
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ID">Edituj klienta</a> 
-    <a asp-controller="ZaznamPojistenis" asp-action="Create" asp-route-id="@Model?.ID">Přidej pojištění</a>|
-    <a asp-action="Index">Zpátky na seznam</a>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam klientů</a>
+
 </div>

@@ -1,44 +1,85 @@
 ﻿@model mvcapppojisteniverze02.Models.Klient
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editace klienta";
 }
 
-<h1>Edit</h1>
-
-<h4>Klient</h4>
+<br />
+<p class="h3">Editace údajů klienta</p>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ID" />
+    <div class="row">
+        <div class="col-4">
             <div class="form-group">
-                <label asp-for="Jmeno" class="control-label"></label>
+                <strong><label asp-for="Jmeno" class="control-label"></label></strong>
                 <input asp-for="Jmeno" class="form-control" />
                 <span asp-validation-for="Jmeno" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-4">
             <div class="form-group">
-                <label asp-for="Prijmeni" class="control-label"></label>
+                <strong><label asp-for="Prijmeni" class="control-label"></label></strong>
                 <input asp-for="Prijmeni" class="form-control" />
                 <span asp-validation-for="Prijmeni" class="text-danger"></span>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
             <div class="form-group">
-                <label asp-for="Telefon" class="control-label"></label>
+                <strong><label asp-for="Email" class="control-label"></label></strong>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <strong><label asp-for="Telefon" class="control-label"></label></strong>
                 <input asp-for="Telefon" class="form-control" />
                 <span asp-validation-for="Telefon" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <strong><label asp-for="Ulice" class="control-label"></label></strong>
+                <input asp-for="Ulice" class="form-control" />
+                <span asp-validation-for="Ulice" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <strong> <label asp-for="Mesto" class="control-label"></label></strong>
+                <input asp-for="Mesto" class="form-control" />
+                <span asp-validation-for="Mesto" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-4">
+            <div class="form-group">
+                <strong><label asp-for="Psc" class="control-label"></label></strong>
+                <input asp-for="Psc" class="form-control" />
+                <span asp-validation-for="Psc" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group text-center">
+        <input type="submit" value="Uložit" class="btn btn-primary" />
+    </div>
+</form>
+<hr />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam klientů</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

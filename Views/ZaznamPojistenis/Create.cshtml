@@ -1,24 +1,75 @@
 ﻿@model mvcapppojisteniverze02.Models.ZaznamPojisteni
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Vytvořit pojištění";
 }
 
-<h1>Create</h1>
-
-<h4>ZaznamPojisteni</h4>
+<br />
+<p class="h3">Přidat pojištění</p>
 <hr />
-<div class="row">
+
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-8">
+            <div class="form-group">
+                <label asp-for="ProduktID" class="control-label"></label>
+                <select asp-for="ProduktID" class="form-control" asp-items="ViewBag.ProduktID"></select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="Cena" class="control-label"></label>
+                <input asp-for="Cena" class="form-control" />
+                <span asp-validation-for="Cena" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="ZacatekPojisteni" class="control-label"></label>
+                <input asp-for="ZacatekPojisteni" class="form-control" />
+                <span asp-validation-for="ZacatekPojisteni" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="KonecPojisteni" class="control-label"></label>
+                <input asp-for="KonecPojisteni" class="form-control" />
+                <span asp-validation-for="KonecPojisteni" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="form-group text-center">
+        <input type="submit" value="Uložit" class="btn btn-primary" />
+    </div>
+</form>
+
+
+
+
+
+
+
+
+@*<div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="KlientID" class="control-label"></label>
-                <select asp-for="KlientID" class ="form-control" asp-items="ViewBag.KlientID"></select>
-            </div>*@
+            <div class="form-group">
+            <label asp-for="KlientID" class="control-label"></label>
+            <select asp-for="KlientID" class ="form-control" asp-items="ViewBag.KlientID"></select>
+            </div>
             <div class="form-group">
                 <label asp-for="ProduktID" class="control-label"></label>
-                <select asp-for="ProduktID" class ="form-control" asp-items="ViewBag.ProduktID"></select>
+                <select asp-for="ProduktID" class="form-control" asp-items="ViewBag.ProduktID"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Cena" class="control-label"></label>
@@ -40,12 +91,14 @@
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

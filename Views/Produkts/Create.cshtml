@@ -1,37 +1,46 @@
 ﻿@model mvcapppojisteniverze02.Models.Produkt
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Nový produkt";
 }
 
-<h1>Create</h1>
-
-<h4>Produkt</h4>
+<br />
+<p class="h3">Nový produkt</p>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nazev" class="control-label"></label>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="form-group col-4">
+                <strong> <label asp-for="Nazev" class="control-label"></label></strong>
                 <input asp-for="Nazev" class="form-control" />
                 <span asp-validation-for="Nazev" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Popis" class="control-label"></label>
+                <strong><label asp-for="Popis" class="control-label"></label></strong>
                 <input asp-for="Popis" class="form-control" />
                 <span asp-validation-for="Popis" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+    <br />
+    <div class="form-group text-center">
+        <input type="submit" value="Uložit" class="btn btn-primary" />
     </div>
+</form>
+<hr />
+<div>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam produktů</a>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+
+
+
+
+
+
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
