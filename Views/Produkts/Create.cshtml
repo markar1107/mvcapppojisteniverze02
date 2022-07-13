@@ -5,10 +5,13 @@
 }
 
 <br />
-<p class="h3">Nový produkt</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Nový produkt</p>
 <hr />
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="container bg-warning bg-opacity-25">
+    <br />
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
             <div class="form-group col-4">
                 <strong> <label asp-for="Nazev" class="control-label"></label></strong>
@@ -21,11 +24,15 @@
                 <span asp-validation-for="Popis" class="text-danger"></span>
             </div>
         </div>
+        <br />
+        <div class="form-group text-center">
+            <input type="submit" value="Uložit" class="btn btn-primary" />
+        </div>
+    </form>
     <br />
-    <div class="form-group text-center">
-        <input type="submit" value="Uložit" class="btn btn-primary" />
-    </div>
-</form>
+</div>
+
+
 <hr />
 <div>
     <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam produktů</a>
@@ -43,5 +50,7 @@
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

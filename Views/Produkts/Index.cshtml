@@ -6,46 +6,52 @@
 
 
 <br />
-<p class="h3">Seznam produktů</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Seznam produktů</p>
 <hr />
 
 <p class="text-center">
     <a class="btn btn-primary" asp-action="Create">Nový produkt</a>
 </p>
 
-<table border="2" class="table table-hover table-bordered">
-    <thead class="bg-light">
-        <tr>
-            <th class="col-4">
-                @Html.DisplayNameFor(model => model.Nazev)
-            </th>
-            <th class="col">
-                @Html.DisplayNameFor(model => model.Popis)
-
-            </th>
-            <th class="col-2"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="bg-warning bg-opacity-25">
+    <table border="2" class="table table-hover table-bordered">
+        <thead class="bg-light">
             <tr>
-                <td>
-                    <strong>
-                        <a asp-action="Details" asp-route-id="@item.ProduktID">
-                            @Html.DisplayFor(modelItem => item.Nazev)
-                        </a>
-                    </strong>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Popis)
-                </td>
-                <td class="text-center">
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.ProduktID">Editovat</a> |
-                    @*<a class="btn btn-info"  asp-action="Details" asp-route-id="@item.ID" role="button">Detaily</a> |*@
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProduktID">Odstranit</a>
-                </td>
+                <th class="col-4">
+                    @Html.DisplayNameFor(model => model.Nazev)
+                </th>
+                <th class="col">
+                    @Html.DisplayNameFor(model => model.Popis)
+
+                </th>
+                <th class="col-2"></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <strong>
+                            <a asp-action="Details" asp-route-id="@item.ProduktID">
+                                @Html.DisplayFor(modelItem => item.Nazev)
+                            </a>
+                        </strong>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Popis)
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.ProduktID">Editovat</a> |
+                        @*<a class="btn btn-info"  asp-action="Details" asp-route-id="@item.ID" role="button">Detaily</a> |*@
+                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProduktID">Odstranit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+

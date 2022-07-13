@@ -5,28 +5,34 @@
 }
 
 <br />
-<p class="h3">Detail produktu</p>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.Nazev)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.Nazev)
-        </dd>
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.Popis)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.Popis)
-        </dd>
-    </dl>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Detail produktu</p>
+<hr />
+
+<div class="container bg-warning bg-opacity-25">
+    <div>
+        <br />
+        <dl class="row">
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Nazev)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Nazev)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Popis)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Popis)
+            </dd>
+        </dl>
+    </div>
+    <div class="text-center">
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ProduktID">Editovat</a> |
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.ProduktID">Odstranit</a>
+    </div>
+    <br />
 </div>
-<div class="text-center">
-    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ProduktID">Editovat</a> |
-    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.ProduktID">Odstranit</a>
-</div>
+
 <hr />
 <div>
     <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam produktů</a>

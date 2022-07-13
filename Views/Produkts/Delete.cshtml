@@ -5,10 +5,11 @@
 }
 
 <br />
-<p class="h3">Odstranit produkt</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Odstranit produkt</p>
 <hr />
 
-<div>
+<div class="container bg-warning bg-opacity-25">
+    <br />
     <dl class="row">
         <dt class="col-2">
             @Html.DisplayNameFor(model => model.Nazev)
@@ -28,11 +29,13 @@
         <div class="text-center">
             <input type="submit" value="Odstranit" class="btn btn-danger" />
         </div>
-        <hr />
-        <br />
-        <div>
-            <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam produktů</a>
-        </div>
     </form>
+    <br />
 </div>
+<hr />
+<div>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam produktů</a>
+</div>
+
+
 
