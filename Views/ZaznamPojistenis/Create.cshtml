@@ -8,6 +8,10 @@
 <p class="h3">Přidat pojištění</p>
 <hr />
 
+<p class="lead">
+    Klient: @ViewBag.konkretniKlient.Jmeno @ViewBag.konkretniKlient.Prijmeni
+</p> 
+
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
@@ -53,7 +57,7 @@
 <hr />
 
 <div>
-    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-controller="Klients" asp-action="Index">Zpátky na seznam klientů</a>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-controller="Klients" asp-action="Details" asp-route-id="@ViewBag.konkretniKlient.ID">Zpátky na detail klienta</a>
 </div>
 
 @section Scripts {

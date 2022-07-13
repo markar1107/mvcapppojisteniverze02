@@ -47,8 +47,10 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: ZaznamPojistenis/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create(int? id)
         {
+            ViewBag.konkretniKlient = await _context.Klienti.FirstOrDefaultAsync(m => m.ID == id);
+
             //ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "Prijmeni");
             ViewData["ProduktID"] = new SelectList(_context.Produkty, "ProduktID", "Nazev");
             return View();

@@ -1,13 +1,13 @@
 ﻿@model mvcapppojisteniverze02.Models.ZaznamPojisteni
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editace pojištění";
 }
 
-<h1>Edit</h1>
-
-<h4>ZaznamPojisteni</h4>
+<br />
+<p class="h3">Editace pojištění</p>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -50,5 +50,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
