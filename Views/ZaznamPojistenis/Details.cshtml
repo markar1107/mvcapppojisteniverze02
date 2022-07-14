@@ -5,49 +5,53 @@
 }
 
 <br />
-<p class="h3">Detaily pojištění</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Detaily pojištění</p>
 <hr />
+<div class="container bg-warning bg-opacity-25">
+    <br />
+    <div>
+        <dl class="row">
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Klient)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Klient.Jmeno)
+                @Html.DisplayFor(model => model.Klient.Prijmeni)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Produkt)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Produkt.Nazev)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.Cena)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.Cena)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.ZacatekPojisteni)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.ZacatekPojisteni)
+            </dd>
+            <dt class="col-2">
+                @Html.DisplayNameFor(model => model.KonecPojisteni)
+            </dt>
+            <dd class="col-10">
+                @Html.DisplayFor(model => model.KonecPojisteni)
+            </dd>
+        </dl>
+    </div>
+    <div class="text-center">
+        <a class="btn btn-warning" asp-controller="ZaznamPojistenis" asp-action="Edit" asp-route-id="@Model?.ZaznamPojisteniID">Editovat</a> |
+        <a class="btn btn-danger" asp-controller="ZaznamPojistenis" asp-action="Delete" asp-route-id="@Model?.ZaznamPojisteniID">Odstranit</a>
+    </div>
+    <br />
+</div>
 
-<div>
-    <dl class="row">
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.Klient)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.Klient.Jmeno)
-            @Html.DisplayFor(model => model.Klient.Prijmeni)
-        </dd>
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.Produkt)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.Produkt.Nazev)
-        </dd>
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.Cena)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.Cena)
-        </dd>
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.ZacatekPojisteni)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.ZacatekPojisteni)
-        </dd>
-        <dt class="col-2">
-            @Html.DisplayNameFor(model => model.KonecPojisteni)
-        </dt>
-        <dd class="col-10">
-            @Html.DisplayFor(model => model.KonecPojisteni)
-        </dd>
-    </dl>
-</div>
-<div class="text-center">
-    <a class="btn btn-warning" asp-controller="ZaznamPojistenis" asp-action="Edit" asp-route-id="@Model?.ZaznamPojisteniID">Editovat</a> |
-    <a class="btn btn-danger" asp-controller="ZaznamPojistenis" asp-action="Delete" asp-route-id="@Model?.ZaznamPojisteniID">Odstranit</a>
-</div>
 <hr />
 <div>
-    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-controller="Klients" asp-action="Index">Zpátky na seznam klientů</a>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-controller="Klients" asp-action="Details" asp-route-id="@Model.KlientID">Zpátky na detail klienta</a>
 </div>

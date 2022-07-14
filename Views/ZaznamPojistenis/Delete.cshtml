@@ -1,51 +1,60 @@
 ﻿@model mvcapppojisteniverze02.Models.ZaznamPojisteni
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Odstranit pojištění";
 }
 
-<h1>Delete</h1>
+<br />
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Odstranit pojištění</p>
+<br />
+<div class="lead">
+    <div class="d-block p-2 bg-success bg-opacity-10 shadow-sm">
+        @Html.DisplayNameFor(model => model.Klient)
+        @Html.DisplayFor(model => model.Klient.Jmeno)
+        @Html.DisplayFor(model => model.Klient.Prijmeni)
+    </div>
+</div>
+<hr />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>ZaznamPojisteni</h4>
-    <hr />
+<div class="container bg-warning bg-opacity-25">
+    <br />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cena)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Cena)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ZacatekPojisteni)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ZacatekPojisteni)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.KonecPojisteni)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.KonecPojisteni)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Klient)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Klient.ID)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-2">
             @Html.DisplayNameFor(model => model.Produkt)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Produkt.ProduktID)
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Produkt.Nazev)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.ZacatekPojisteni)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.ZacatekPojisteni)
+        </dd>
+        <dt class="col-2">
+            @Html.DisplayNameFor(model => model.KonecPojisteni)
+        </dt>
+        <dd class="col-10">
+            @Html.DisplayFor(model => model.KonecPojisteni)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ZaznamPojisteniID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+
+    <div class="text-center">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ZaznamPojisteniID" />
+            <input type="submit" value="Odstranit" class="btn btn-danger" />
+        </form>
+    </div>
+    <br />
+</div>
+
+<hr />
+<div>
+    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-controller="Klients" asp-action="Details" asp-route-id="@Model.KlientID">Zpátky na detail klienta</a>
 </div>
