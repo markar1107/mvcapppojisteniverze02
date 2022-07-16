@@ -6,14 +6,14 @@
 
 
 <br />
-<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Seznam produktů</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Seznam produktů</p>
 <hr />
 
 <p class="text-center">
     <a class="btn btn-primary" asp-action="Create">Nový produkt</a>
 </p>
 
-<div class="bg-warning bg-opacity-25">
+<div class="bg-warning bg-opacity-25 shadow-sm">
     <table border="2" class="table table-hover table-bordered">
         <thead class="bg-light">
             <tr>
@@ -43,7 +43,6 @@
                     </td>
                     <td class="text-center">
                         <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.ProduktID">Editovat</a> |
-                        @*<a class="btn btn-info"  asp-action="Details" asp-route-id="@item.ID" role="button">Detaily</a> |*@
                         <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.ProduktID">Odstranit</a>
                     </td>
                 </tr>

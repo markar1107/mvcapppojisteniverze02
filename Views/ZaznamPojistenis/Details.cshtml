@@ -5,9 +5,9 @@
 }
 
 <br />
-<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Detaily pojištění</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Detaily pojištění</p>
 <hr />
-<div class="container bg-warning bg-opacity-25">
+<div class="container bg-warning bg-opacity-25 shadow-sm">
     <br />
     <div>
         <dl class="row">
@@ -53,5 +53,5 @@
 
 <hr />
 <div>
-    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-controller="Klients" asp-action="Details" asp-route-id="@Model.KlientID">Zpátky na detail klienta</a>
+    <a class="accordion-button btn btn-info text-dark shadow-sm" style="height: 30px;" asp-controller="Klients" asp-action="Details" asp-route-id="@Model.KlientID">Zpátky na detail klienta</a>
 </div>

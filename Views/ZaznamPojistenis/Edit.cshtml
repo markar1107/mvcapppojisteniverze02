@@ -5,7 +5,7 @@
 }
 
 <br />
-<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Editace pojištění</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Editace pojištění</p>
 
 <div class="lead">
     <div class="d-block p-2 bg-success bg-opacity-10 shadow-sm">
@@ -13,52 +13,75 @@
         @Html.DisplayFor(model => model.Klient.Jmeno)
         @Html.DisplayFor(model => model.Klient.Prijmeni)
     </div>
+    <div class="d-block p-2 bg-success bg-opacity-10 shadow-sm">
+        @Html.DisplayFor(model => model.Produkt.Nazev)
+    </div>
 </div>
-    <hr />
+<hr />
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="ZaznamPojisteniID" />
+<div class="container bg-warning bg-opacity-25 shadow-sm">
+    <br />
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ZaznamPojisteniID" />
+        <div class="row">
+            <div class="col-4 offset-4">
                 <div class="form-group">
-                    <label asp-for="KlientID" class="control-label"></label>
-                    <select asp-for="KlientID" class="form-control" asp-items="ViewBag.KlientID"></select>
+                    <label asp-for="KlientID" class="control-label visually-hidden"></label>
+                    <input asp-for="KlientID" class="form-control visually-hidden" />
                     <span asp-validation-for="KlientID" class="text-danger"></span>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 offset-4">
                 <div class="form-group">
-                    <label asp-for="ProduktID" class="control-label"></label>
-                    <select asp-for="ProduktID" class="form-control" asp-items="ViewBag.ProduktID"></select>
+                    <label asp-for="ProduktID" class="control-label visually-hidden"></label>
+                    <input asp-for="ProduktID" class="form-control visually-hidden" />
                     <span asp-validation-for="ProduktID" class="text-danger"></span>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4 offset-4">
                 <div class="form-group">
-                    <label asp-for="Cena" class="control-label"></label>
+                    <strong><label asp-for="Cena" class="control-label"></label></strong>
                     <input asp-for="Cena" class="form-control" />
                     <span asp-validation-for="Cena" class="text-danger"></span>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="ZacatekPojisteni" class="control-label"></label>
+                    <strong><label asp-for="ZacatekPojisteni" class="control-label"></label></strong>
                     <input asp-for="ZacatekPojisteni" class="form-control" />
                     <span asp-validation-for="ZacatekPojisteni" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="KonecPojisteni" class="control-label"></label>
+                    <strong><label asp-for="KonecPojisteni" class="control-label"></label></strong>
                     <input asp-for="KonecPojisteni" class="form-control" />
                     <span asp-validation-for="KonecPojisteni" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
+        <br />
+        <div class="form-group text-center">
+            <input type="submit" value="Uložit" class="btn btn-primary" />
+        </div>
+    </form>
+    <br />
+</div>
+<hr />
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
+<div>
+    <a class="accordion-button btn btn-info text-dark shadow-sm" style="height: 30px;" asp-controller="Klients" asp-action="Details" asp-route-id="@Model.KlientID">Zpátky na detail klienta</a>
+</div>
 
-    @section Scripts {
-        @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     }

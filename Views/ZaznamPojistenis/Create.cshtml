@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-8">
                 <div class="form-group">
-                    <label asp-for="ProduktID" class="control-label"></label>
+                    <strong><label asp-for="ProduktID" class="control-label"></label></strong>
                     <select asp-for="ProduktID" class="form-control form-select" asp-items="ViewBag.ProduktID"></select>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="Cena" class="control-label"></label>
+                    <strong><label asp-for="Cena" class="control-label"></label></strong>
                     <input asp-for="Cena" class="form-control" />
                     <span asp-validation-for="Cena" class="text-danger"></span>
                 </div>
@@ -43,14 +43,14 @@
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="ZacatekPojisteni" class="control-label"></label>
+                    <strong><label asp-for="ZacatekPojisteni" class="control-label"></label></strong>
                     <input asp-for="ZacatekPojisteni" class="form-control" />
                     <span asp-validation-for="ZacatekPojisteni" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-4">
                 <div class="form-group">
-                    <label asp-for="KonecPojisteni" class="control-label"></label>
+                    <strong><label asp-for="KonecPojisteni" class="control-label"></label></strong>
                     <input asp-for="KonecPojisteni" class="form-control" />
                     <span asp-validation-for="KonecPojisteni" class="text-danger"></span>
                 </div>

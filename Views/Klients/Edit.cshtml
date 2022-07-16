@@ -5,10 +5,10 @@
 }
 
 <br />
-<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded">Editace údajů klienta</p>
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Editace údajů klienta</p>
 <hr />
 
-<div class="container bg-warning bg-opacity-25">
+<div class="container bg-warning bg-opacity-25 shadow-sm">
     <br />
     <form asp-action="Edit">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -82,7 +82,7 @@
 
 <hr />
 <div>
-    <a class="accordion-button btn btn-info text-dark" style="height: 30px;" asp-action="Index">Zpátky na seznam klientů</a>
+    <a class="accordion-button btn btn-info text-dark shadow-sm" style="height: 30px;" asp-action="Index">Zpátky na seznam klientů</a>
 </div>
 
 @section Scripts {

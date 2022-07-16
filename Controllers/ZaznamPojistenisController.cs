@@ -88,13 +88,16 @@ namespace mvcapppojisteniverze02.Controllers
                 return NotFound();
             }
 
-            var zaznamPojisteni = await _context.ZaznamyPojisteni.FindAsync(id);
+            var zaznamPojisteni = await _context.ZaznamyPojisteni
+                .Include(s => s.Klient)
+                .Include(e => e.Produkt)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ZaznamPojisteniID == id);
+
             if (zaznamPojisteni == null)
             {
                 return NotFound();
             }
-            ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "ID", zaznamPojisteni.KlientID);
-            ViewData["ProduktID"] = new SelectList(_context.Produkty, "ProduktID", "ProduktID", zaznamPojisteni.ProduktID);
             return View(zaznamPojisteni);
         }
 
@@ -103,7 +106,7 @@ namespace mvcapppojisteniverze02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ZaznamPojisteniID,KlientID,ProduktID,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni)
+        public async Task<IActionResult> Edit(int id, [Bind("ZaznamPojisteniID,KlientID, ProduktID,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni)
         {
             if (id != zaznamPojisteni.ZaznamPojisteniID)
             {
@@ -128,10 +131,14 @@ namespace mvcapppojisteniverze02.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Klients", new { id = zaznamPojisteni.KlientID });
             }
-            ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "ID", zaznamPojisteni.KlientID);
-            ViewData["ProduktID"] = new SelectList(_context.Produkty, "ProduktID", "ProduktID", zaznamPojisteni.ProduktID);
+            zaznamPojisteni = await _context.ZaznamyPojisteni
+                .Include(s => s.Klient)
+                .Include(e => e.Produkt)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.ZaznamPojisteniID == id);
+
             return View(zaznamPojisteni);
         }
 
@@ -169,14 +176,15 @@ namespace mvcapppojisteniverze02.Controllers
             {
                 _context.ZaznamyPojisteni.Remove(zaznamPojisteni);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction("Details", "Klients", new {id = zaznamPojisteni.KlientID});
         }
 
         private bool ZaznamPojisteniExists(int id)
         {
-          return _context.ZaznamyPojisteni.Any(e => e.ZaznamPojisteniID == id);
+            return _context.ZaznamyPojisteni.Any(e => e.ZaznamPojisteniID == id);
         }
     }
 }

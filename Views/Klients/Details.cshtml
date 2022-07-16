@@ -60,8 +60,6 @@
 
                             @*<th>Předmět pojištění</th>*@
                             <th class="col-2">Cena</th>
-                            @*<th>Začátek pojištění</th>*@
-                            @*<th>Konec pojištění</th>*@
                             <th class="col-3"></th>
                         </tr>
                     </thead>
@@ -82,15 +80,9 @@
                             <td>
                                 @Html.DisplayFor(modelPolozka => polozka.Cena)
                             </td>
-                            @*<td>
-                        @Html.DisplayFor(modelPolozka => polozka.ZacatekPojisteni)
-                        </td>
-                        <td>
-                        @Html.DisplayFor(modelPolozka => polozka.KonecPojisteni)
-                        </td>*@
                             <td class="text-center">
-                                <a class="btn btn-warning btn-sm" asp-controller="ZaznamPojistenis" asp-action="Edit" asp-route-id="@Model?.ID">Editovat</a> |
-                                <a class="btn btn-danger btn-sm" asp-controller="ZaznamPojistenis" asp-action="Delete" asp-route-id="@Model?.ID">Odstranit</a>
+                                <a class="btn btn-warning btn-sm" asp-controller="ZaznamPojistenis" asp-action="Edit" asp-route-id="@polozka.ZaznamPojisteniID">Editovat</a> |
+                                <a class="btn btn-danger btn-sm" asp-controller="ZaznamPojistenis" asp-action="Delete" asp-route-id="@polozka.ZaznamPojisteniID">Odstranit</a>
                             </td>
                         </tr>
                     }
@@ -109,5 +101,4 @@
 <hr />
 <div>
     <a class="accordion-button btn btn-info text-dark shadow-sm" style="height: 30px;" asp-action="Index">Zpátky na seznam klientů</a>
-
 </div>
