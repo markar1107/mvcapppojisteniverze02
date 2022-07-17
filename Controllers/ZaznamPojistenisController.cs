@@ -62,7 +62,7 @@ namespace mvcapppojisteniverze02.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //public async Task<IActionResult> Create([Bind("ZaznamPojisteniID,KlientID,ProduktID,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni)
-        public async Task<IActionResult> Create([Bind("ZaznamPojisteniID,ProduktID,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni, int id)
+        public async Task<IActionResult> Create([Bind("ZaznamPojisteniID,ProduktID,PredmetPojisteni,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni, int id)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace mvcapppojisteniverze02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ZaznamPojisteniID,KlientID, ProduktID,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni)
+        public async Task<IActionResult> Edit(int id, [Bind("ZaznamPojisteniID,KlientID, ProduktID,PredmetPojisteni,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni)
         {
             if (id != zaznamPojisteni.ZaznamPojisteniID)
             {

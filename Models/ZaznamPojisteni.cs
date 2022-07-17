@@ -8,6 +8,8 @@ namespace mvcapppojisteniverze02.Models
         public int KlientID { get; set; }
         [Display(Name = "Produkt")]
         public int ProduktID { get; set; }
+        [Display(Name = "Předmět pojištění")]
+        public string PredmetPojisteni { get; set; }
         public int Cena { get; set; }
         [Display(Name ="Začátek pojištění")]
         [DataType(DataType.Date)]

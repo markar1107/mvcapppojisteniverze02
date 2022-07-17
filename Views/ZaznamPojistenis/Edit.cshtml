@@ -13,12 +13,16 @@
         @Html.DisplayFor(model => model.Klient.Jmeno)
         @Html.DisplayFor(model => model.Klient.Prijmeni)
     </div>
-    <div class="d-block p-2 bg-success bg-opacity-10 shadow-sm">
-        @Html.DisplayFor(model => model.Produkt.Nazev)
-    </div>
 </div>
-<hr />
+<blockquote class="blockquote d-block p-2 bg-success bg-opacity-10 shadow-sm">
+    <p> @Html.DisplayFor(model => model.Produkt.Nazev)</p>
+    <figcaption class="blockquote-footer">
+        @Html.DisplayFor(model => model.Produkt.Popis)
+    </figcaption>
 
+</blockquote>
+
+<hr />
 <div class="container bg-warning bg-opacity-25 shadow-sm">
     <br />
     <form asp-action="Edit">
@@ -43,7 +47,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4 offset-4">
+            <div class="col-4">
+                <div class="form-group">
+                    <strong><label asp-for="PredmetPojisteni" class="control-label"></label></strong>
+                    <input asp-for="PredmetPojisteni" class="form-control" />
+                    <span asp-validation-for="PredmetPojisteni" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
                     <strong><label asp-for="Cena" class="control-label"></label></strong>
                     <input asp-for="Cena" class="form-control" />

@@ -31,8 +31,8 @@ namespace mvcapppojisteniverze02.Data
 
             var zaznamyPojisteni = new ZaznamPojisteni[]
             {
-                new ZaznamPojisteni{KlientID=1,ProduktID=1,Cena=1000,ZacatekPojisteni=DateTime.Parse("2022/02/05"),KonecPojisteni=DateTime.Parse("2023/02/04")},
-                new ZaznamPojisteni{KlientID=2,ProduktID=2,Cena=3500,ZacatekPojisteni=DateTime.Parse("2021/08/16"),KonecPojisteni=DateTime.Parse("2022/08/15")},
+                new ZaznamPojisteni{KlientID=1,ProduktID=1,PredmetPojisteni="byt",Cena=1000,ZacatekPojisteni=DateTime.Parse("2022/02/05"),KonecPojisteni=DateTime.Parse("2023/02/04")},
+                new ZaznamPojisteni{KlientID=2,ProduktID=2,PredmetPojisteni="osobní auto",Cena=3500,ZacatekPojisteni=DateTime.Parse("2021/08/16"),KonecPojisteni=DateTime.Parse("2022/08/15")},
 
             };
 

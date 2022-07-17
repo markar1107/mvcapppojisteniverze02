@@ -57,8 +57,6 @@
                     <thead>
                         <tr class="bg-light">
                             <th class="col">Název</th>
-
-                            @*<th>Předmět pojištění</th>*@
                             <th class="col-2">Cena</th>
                             <th class="col-3"></th>
                         </tr>
@@ -75,8 +73,8 @@
                                 </strong>
                             </td>
                             @*<td>
-                        @Html.DisplayFor(modelPolozka => polozka.Produkt.Popis)
-                        </td>*@
+                                @Html.DisplayFor(modelPolozka => polozka.PredmetPojisteni)
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelPolozka => polozka.Cena)
                             </td>
