@@ -50,8 +50,6 @@ namespace mvcapppojisteniverze02.Controllers
         public async Task<IActionResult> Create(int? id)
         {
             ViewBag.konkretniKlient = await _context.Klienti.FirstOrDefaultAsync(m => m.ID == id);
-
-            //ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "Prijmeni");
             ViewData["ProduktID"] = new SelectList(_context.Produkty, "ProduktID", "Nazev");
             return View();
         }
@@ -61,7 +59,6 @@ namespace mvcapppojisteniverze02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("ZaznamPojisteniID,KlientID,ProduktID,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni)
         public async Task<IActionResult> Create([Bind("ZaznamPojisteniID,ProduktID,PredmetPojisteni,Cena,ZacatekPojisteni,KonecPojisteni")] ZaznamPojisteni zaznamPojisteni, int id)
         {
             if (ModelState.IsValid)
@@ -69,13 +66,11 @@ namespace mvcapppojisteniverze02.Controllers
                 zaznamPojisteni.KlientID = id;
                 _context.Add(zaznamPojisteni);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-                // tohle funguje taky
-                //return RedirectToAction("Details", new RouteValueDictionary(
-                //new { controller = "Klients", action = "Details", id = zaznamPojisteni.KlientID}));
                 return RedirectToAction("Details", "Klients", new { id = zaznamPojisteni.KlientID });
             }
-            ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "ID", zaznamPojisteni.KlientID);
+            
+            //ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "ID", zaznamPojisteni.KlientID);
+            ViewBag.konkretniKlient = await _context.Klienti.FirstOrDefaultAsync(m => m.ID == id);
             ViewData["ProduktID"] = new SelectList(_context.Produkty, "ProduktID", "ProduktID", zaznamPojisteni.ProduktID);
             return View(zaznamPojisteni);
         }
@@ -179,7 +174,7 @@ namespace mvcapppojisteniverze02.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Details", "Klients", new {id = zaznamPojisteni.KlientID});
+            return RedirectToAction("Details", "Klients", new { id = zaznamPojisteni.KlientID });
         }
 
         private bool ZaznamPojisteniExists(int id)

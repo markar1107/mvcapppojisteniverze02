@@ -48,7 +48,6 @@
     <br />
     <div>
         <dl class="row">
-
             <dt class="col sm-2">
                 @Html.DisplayNameFor(model => model.ZaznamPojisteniKolekce)
             </dt>
@@ -56,7 +55,8 @@
                 <table border="1" class="table table-hover table-bordered border-3">
                     <thead>
                         <tr class="bg-light">
-                            <th class="col">Název</th>
+                            <th class="col">Název
+                            </th>
                             <th class="col-2">Cena</th>
                             <th class="col-3"></th>
                         </tr>
@@ -72,9 +72,6 @@
                                     </a>
                                 </strong>
                             </td>
-                            @*<td>
-                                @Html.DisplayFor(modelPolozka => polozka.PredmetPojisteni)
-                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelPolozka => polozka.Cena)
                             </td>
