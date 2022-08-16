@@ -1,14 +1,26 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using mvcapppojisteniverze02.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<mvcapppojisteniverze02Context>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("mvcapppojisteniverze02Context") ?? throw new InvalidOperationException("Connection string 'mvcapppojisteniverze02Context' not found.")));
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<mvcapppojisteniverze02Context>();
+
+
+//builder.Services.AddDbContext<mvcapppojisteniverze02Context>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("mvcapppojisteniverze02Context") ?? throw new InvalidOperationException("Connection string 'mvcapppojisteniverze02Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 
 var app = builder.Build();
 
@@ -40,6 +52,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

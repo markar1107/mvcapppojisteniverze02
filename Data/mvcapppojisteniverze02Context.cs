@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using mvcapppojisteniverze02.Models;
 
 namespace mvcapppojisteniverze02.Data
 {
-    public class mvcapppojisteniverze02Context : DbContext
+    public class mvcapppojisteniverze02Context : IdentityDbContext
     {
         public mvcapppojisteniverze02Context (DbContextOptions<mvcapppojisteniverze02Context> options)
             : base(options)
