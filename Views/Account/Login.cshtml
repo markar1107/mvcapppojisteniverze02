@@ -6,21 +6,29 @@
     ViewData["Title"] = "Přihlášení";
 }
 
-<section>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <form class="d-flex flex-column gap-2" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
+<br />
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Přihlášení uživatele</p>
+<hr />
+
+<div class="container bg-warning bg-opacity-25 shadow-sm">
+    <div>
+        <form class="d-flex flex-column gap-2" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="col-4">
                 <div class="form-group">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
                     <label asp-for="Password"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
                     <div class="checkbox">
                         <label asp-for="RememberMe">
@@ -29,18 +37,15 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="clanky-tlacitko align-self-start">Přihlásit se</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Registrace</a>
-                    </p>
-                </div>
-            </form>
-        </div>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Přihlásit" class="btn btn-primary" /> |
+                <a class="btn btn-warning" asp-controller="Account" asp-action="Register">Registrovat</a>
+            </div>
+        </form>
+        <br />
     </div>
-</section>
+</div>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

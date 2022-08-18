@@ -3,31 +3,42 @@
     ViewData["Title"] = "Registrace";
 }
 
-<section>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-            <form class="d-flex flex-column gap-2" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
+<br />
+<p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Registrace nového uživatele</p>
+<hr />
+
+<div class="container bg-warning bg-opacity-25 shadow-sm">
+    <div>
+        <form class="d-flex flex-column gap-2" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="col-4">
                 <div class="form-group">
                     <label asp-for="Email"></label>
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
                     <label asp-for="Password"></label>
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="col-4">
                 <div class="form-group">
                     <label asp-for="ConfirmPassword"></label>
                     <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
-                <button type="submit" class="clanky-tlacitko align-self-start">Registrovat</button>
-            </form>
-        </div>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Registrovat" class="btn btn-primary" />
+            </div>
+        </form>
+        <br />
     </div>
-</section>
+</div>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
