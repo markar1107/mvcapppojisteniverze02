@@ -20,16 +20,20 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Klients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? akce)
         {
-              return _context.Klienti != null ? 
+            ViewBag.akce = akce;
+            
+            return _context.Klienti != null ?
                           View(await _context.Klienti.ToListAsync()) :
                           Problem("Entity set 'mvcapppojisteniverze02Context.Klient'  is null.");
+
         }
 
         // GET: Klients/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+
             if (id == null || _context.Klienti == null)
             {
                 return NotFound();
@@ -65,7 +69,8 @@ namespace mvcapppojisteniverze02.Controllers
             {
                 _context.Add(klient);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Klients", new { akce = "nový" });
+                //return RedirectToAction(nameof(Index));
             }
             return View(klient);
         }
@@ -153,14 +158,15 @@ namespace mvcapppojisteniverze02.Controllers
             {
                 _context.Klienti.Remove(klient);
             }
-            
+
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Klients", new { akce = "odstranit" });
+            //return RedirectToAction(nameof(Index));
         }
 
         private bool KlientExists(int id)
         {
-          return (_context.Klienti?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Klienti?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

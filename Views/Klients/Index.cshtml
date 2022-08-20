@@ -8,6 +8,26 @@
 <p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Seznam klientů</p>
 <hr />
 
+@if (ViewBag.akce == "nový")
+{
+    <div class="lead">
+        <div class="d-block p-2 bg-success bg-opacity-10 shadow-sm text-center">
+            Nový klient byl uložen do databáze
+        </div>
+    </div>
+    <br />
+}
+else if (ViewBag.akce == "odstranit")
+{
+    <div class="lead">
+        <div class="d-block p-2 bg-success bg-opacity-10 shadow-sm text-center">
+            Klient byl odstraněn z databáze
+        </div>
+    </div>
+    <br />
+}
+
+
 <p class="text-center">
     <a class="btn btn-primary" asp-action="Create">Nový klient</a>
 </p>
