@@ -37,7 +37,11 @@ else if (ViewBag.akce == "odstranit")
         <thead class="bg-light">
             <tr>
                 <th class="col-4">
-                    @Html.DisplayNameFor(model => model.Jmeno)
+                    
+                    <a class="text-dark" asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParm">
+                        @Html.DisplayNameFor(model => model.Jmeno)
+                    </a>
+                    
                 </th>
                 <th class="col">
                     Adresa

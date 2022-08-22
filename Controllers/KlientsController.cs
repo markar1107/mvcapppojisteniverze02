@@ -20,13 +20,33 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Klients
-        public async Task<IActionResult> Index(string? akce)
+        public async Task<IActionResult> Index(string akce, string sortOrder)
         {
             ViewBag.akce = akce;
-            
-            return _context.Klienti != null ?
-                          View(await _context.Klienti.ToListAsync()) :
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            var klienti = from s in _context.Klienti
+                          select s;
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    klienti = klienti.OrderByDescending(s => s.Prijmeni);
+                    break;
+                default:
+                    klienti = klienti.OrderBy(s => s.Prijmeni);
+                    break;
+            }
+
+            return klienti != null ?
+                          View(await klienti.ToListAsync()) :
                           Problem("Entity set 'mvcapppojisteniverze02Context.Klient'  is null.");
+
+
+
+            //return _context.Klienti != null ?
+            //              View(await _context.Klienti.ToListAsync()) :
+            //              Problem("Entity set 'mvcapppojisteniverze02Context.Klient'  is null.");
 
         }
 
