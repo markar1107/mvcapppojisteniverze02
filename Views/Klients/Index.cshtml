@@ -32,6 +32,25 @@ else if (ViewBag.akce == "odstranit")
     <a class="btn btn-primary" asp-action="Create">Nový klient</a>
 </p>
 
+@using (Html.BeginForm())
+{
+    <p class="text-end">
+        vyhledat podle jména: @Html.TextBox("SearchString")
+        <input type="submit" value="Hledat" />
+    </p>
+}
+<br />
+
+    @*<div class="container-fluid">
+        <form class="d-flex" role="Search">
+            <input class="form-control me-2" type="search" placeholder="vyhledat podle jména" aria-label="Search">
+            <button class="btn btn-outline-success btn-sm" type="submit">Vyhledat</button>
+        </form>
+    </div>*@
+    
+
+
+
 <div class="bg-warning bg-opacity-25 shadow-sm">
     <table border="1" class="table table-hover table-bordered border-2">
         <thead class="bg-light">

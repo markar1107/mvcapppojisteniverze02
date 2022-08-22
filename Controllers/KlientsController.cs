@@ -20,13 +20,18 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Klients
-        public async Task<IActionResult> Index(string akce, string sortOrder)
+        public async Task<IActionResult> Index(string akce, string sortOrder, string searchString)
         {
             ViewBag.akce = akce;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
             var klienti = from s in _context.Klienti
                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                klienti = klienti.Where(s => s.Prijmeni.Contains(searchString) || s.Jmeno.Contains(searchString));
+            }
 
             switch (sortOrder)
             {
