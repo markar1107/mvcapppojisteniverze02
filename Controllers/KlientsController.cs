@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mvcapppojisteniverze02.Data;
 using mvcapppojisteniverze02.Models;
+using X.PagedList;
 
 namespace mvcapppojisteniverze02.Controllers
 {
@@ -20,10 +22,22 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Klients
-        public async Task<IActionResult> Index(string akce, string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string alert, string sortOrder, string currentFilter,string searchString, int? page)
         {
-            ViewBag.akce = akce;
+            ViewBag.alert = alert;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CurrentSort = sortOrder;
+            
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var klienti = from s in _context.Klienti
                           select s;
@@ -43,20 +57,17 @@ namespace mvcapppojisteniverze02.Controllers
                     break;
             }
 
+            int pageNumber = page ?? 1;
+            int pageSize = 5;
+
+
             return klienti != null ?
-                          View(await klienti.ToListAsync()) :
+                          View(await klienti.ToPagedListAsync(pageNumber, pageSize)) :
                           Problem("Entity set 'mvcapppojisteniverze02Context.Klient'  is null.");
-
-
-
-            //return _context.Klienti != null ?
-            //              View(await _context.Klienti.ToListAsync()) :
-            //              Problem("Entity set 'mvcapppojisteniverze02Context.Klient'  is null.");
-
         }
 
         // GET: Klients/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string sortOrder, int? id)
         {
 
             if (id == null || _context.Klienti == null)
@@ -64,11 +75,18 @@ namespace mvcapppojisteniverze02.Controllers
                 return NotFound();
             }
 
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CurrentSort = sortOrder;
+
+
+           
+
             var klient = await _context.Klienti
                 .Include(s => s.ZaznamPojisteniKolekce)
                 .ThenInclude(e => e.Produkt)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (klient == null)
             {
                 return NotFound();
@@ -94,7 +112,7 @@ namespace mvcapppojisteniverze02.Controllers
             {
                 _context.Add(klient);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Klients", new { akce = "nový" });
+                return RedirectToAction("Index", "Klients", new { alert = "nový" });
                 //return RedirectToAction(nameof(Index));
             }
             return View(klient);
@@ -185,7 +203,7 @@ namespace mvcapppojisteniverze02.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Klients", new { akce = "odstranit" });
+            return RedirectToAction("Index", "Klients", new { alert = "odstraněn" });
             //return RedirectToAction(nameof(Index));
         }
 

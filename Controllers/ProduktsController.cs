@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mvcapppojisteniverze02.Data;
 using mvcapppojisteniverze02.Models;
+using X.PagedList;
 
 namespace mvcapppojisteniverze02.Controllers
 {
@@ -20,9 +21,46 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Produkts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string alert, string sortOrder, string currentFilter, string searchString, int? page)
         {
-              return View(await _context.Produkty.ToListAsync());
+            ViewBag.alert = alert;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var produkty = from s in _context.Produkty
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                produkty = produkty.Where(s => s.Nazev.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    produkty = produkty.OrderByDescending(s => s.Nazev);
+                    break;
+                default:
+                    produkty = produkty.OrderBy(s => s.Nazev);
+                    break;
+            }
+
+            int pageNumber = page ?? 1;
+            int pageSize = 5;
+
+
+            return View(await produkty.ToPagedListAsync(pageNumber, pageSize));
         }
 
         // GET: Produkts/Details/5
@@ -60,7 +98,7 @@ namespace mvcapppojisteniverze02.Controllers
             {
                 _context.Add(produkt);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Produkts", new { alert = "nový" });
             }
             return View(produkt);
         }
@@ -150,7 +188,7 @@ namespace mvcapppojisteniverze02.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Produkts", new { alert = "odstraněn" });
         }
 
         private bool ProduktExists(int id)

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<mvcapppojisteniverze02.Models.Produkt>
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IEnumerable<mvcapppojisteniverze02.Models.Produkt>
 
 @{
     ViewData["Title"] = "Seznam produktů";
@@ -9,16 +11,60 @@
 <p class="h3 p-3 bg-secondary bg-opacity-10 border border-dark rounded shadow">Seznam produktů</p>
 <hr />
 
+@if (ViewBag.alert == "nový")
+{
+    <div class=" lead alert alert-success alert-dismissible fade show text-center" role="alert">
+        Nový produkt byl uložen do databáze
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <br />
+
+}
+else if (ViewBag.alert == "odstraněn")
+{
+    <div class=" lead alert alert-success alert-dismissible fade show text-center" role="alert">
+        Produkt byl odstraněn z databáze
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <br />
+
+}
+
 <p class="text-center">
     <a class="btn btn-primary" asp-action="Create">Nový produkt</a>
 </p>
+
+<div class="d-flex justify-content-between">
+    <div>
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page = page}),
+        new X.PagedList.Web.Common.PagedListRenderOptions
+        {
+        DisplayItemSliceAndTotal = false,
+        ContainerDivClasses = new[] {"navigation"},
+        LiElementClasses = new[] {"page-item border border-white border-3"},
+        PageClasses = new[] {"page-link text-dark bg-white rounded-circle"},
+        MaximumPageNumbersToDisplay = 5,
+        })
+    </div>
+    <div class="mt-3">
+        <form asp-controller="Produkts" asp-action="Index">
+            <p>
+                Vyhledat podle názvu: <input type="text" name="SearchString" />
+                <input type="submit" value="Vyhledat" />
+            </p>
+        </form>
+    </div>
+
+</div>
 
 <div class="bg-warning bg-opacity-25 shadow-sm">
     <table border="2" class="table table-hover table-bordered">
         <thead class="bg-light">
             <tr>
                 <th class="col-4">
-                    @Html.DisplayNameFor(model => model.Nazev)
+                    <a class="text-dark" asp-action="Index" asp-route-sortOrder="@ViewBag.NameSortParm">
+                        @Html.DisplayNameFor(model => model.Nazev)
+                    </a>
                 </th>
                 <th class="col">
                     @Html.DisplayNameFor(model => model.Popis)
