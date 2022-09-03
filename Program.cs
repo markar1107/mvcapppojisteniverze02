@@ -12,10 +12,6 @@ builder.Services.AddDbContext<mvcapppojisteniverze02Context>(options =>
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<mvcapppojisteniverze02Context>();
 
-
-//builder.Services.AddDbContext<mvcapppojisteniverze02Context>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("mvcapppojisteniverze02Context") ?? throw new InvalidOperationException("Connection string 'mvcapppojisteniverze02Context' not found.")));
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

@@ -22,12 +22,12 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Klients
-        public async Task<IActionResult> Index(string alert, string sortOrder, string currentFilter,string searchString, int? page)
+        public async Task<IActionResult> Index(string alert, string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.alert = alert;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CurrentSort = sortOrder;
-            
+
             if (searchString != null)
             {
                 page = 1;
@@ -60,26 +60,19 @@ namespace mvcapppojisteniverze02.Controllers
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
-
             return klienti != null ?
                           View(await klienti.ToPagedListAsync(pageNumber, pageSize)) :
                           Problem("Entity set 'mvcapppojisteniverze02Context.Klient'  is null.");
         }
 
         // GET: Klients/Details/5
-        public async Task<IActionResult> Details(string sortOrder, int? id)
+        public async Task<IActionResult> Details(int? id)
         {
 
             if (id == null || _context.Klienti == null)
             {
                 return NotFound();
             }
-
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.CurrentSort = sortOrder;
-
-
-           
 
             var klient = await _context.Klienti
                 .Include(s => s.ZaznamPojisteniKolekce)
@@ -113,8 +106,8 @@ namespace mvcapppojisteniverze02.Controllers
                 _context.Add(klient);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index", "Klients", new { alert = "nový" });
-                //return RedirectToAction(nameof(Index));
             }
+
             return View(klient);
         }
 
@@ -204,7 +197,6 @@ namespace mvcapppojisteniverze02.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Klients", new { alert = "odstraněn" });
-            //return RedirectToAction(nameof(Index));
         }
 
         private bool KlientExists(int id)

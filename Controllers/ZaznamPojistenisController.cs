@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using mvcapppojisteniverze02.Data;
 using mvcapppojisteniverze02.Models;
 
+
 namespace mvcapppojisteniverze02.Controllers
 {
     public class ZaznamPojistenisController : Controller
@@ -69,7 +70,6 @@ namespace mvcapppojisteniverze02.Controllers
                 return RedirectToAction("Details", "Klients", new { id = zaznamPojisteni.KlientID });
             }
             
-            //ViewData["KlientID"] = new SelectList(_context.Klienti, "ID", "ID", zaznamPojisteni.KlientID);
             ViewBag.konkretniKlient = await _context.Klienti.FirstOrDefaultAsync(m => m.ID == id);
             ViewData["ProduktID"] = new SelectList(_context.Produkty, "ProduktID", "ProduktID", zaznamPojisteni.ProduktID);
             return View(zaznamPojisteni);
