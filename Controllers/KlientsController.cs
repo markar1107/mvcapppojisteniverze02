@@ -112,7 +112,7 @@ namespace mvcapppojisteniverze02.Controllers
         }
 
         // GET: Klients/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, string returnUrl)
         {
             if (id == null || _context.Klienti == null)
             {
@@ -124,6 +124,9 @@ namespace mvcapppojisteniverze02.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.returnUrl = returnUrl;
+
             return View(klient);
         }
 
@@ -132,7 +135,7 @@ namespace mvcapppojisteniverze02.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Jmeno,Prijmeni,Telefon,Email,Ulice,Mesto,Psc")] Klient klient)
+        public async Task<IActionResult> Edit(int id, string returnUrl, [Bind("ID,Jmeno,Prijmeni,Telefon,Email,Ulice,Mesto,Psc")] Klient klient)
         {
             if (id != klient.ID)
             {
@@ -157,7 +160,13 @@ namespace mvcapppojisteniverze02.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return LocalRedirect(returnUrl);
+                }
+                else
+                    return RedirectToAction(nameof(Index));
             }
             return View(klient);
         }

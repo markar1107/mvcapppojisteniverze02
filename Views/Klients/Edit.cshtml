@@ -10,7 +10,7 @@
 
 <div class="container bg-warning bg-opacity-25 shadow-sm">
     <br />
-    <form asp-action="Edit">
+    <form asp-action="Edit" method="post" asp-route-returnUrl="@ViewBag.returnUrl">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="ID" />
         <div class="row">

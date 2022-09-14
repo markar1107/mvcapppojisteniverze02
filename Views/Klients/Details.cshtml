@@ -87,7 +87,7 @@
     </div>
     <div class="text-center">
         <a class="btn btn-primary" asp-controller="ZaznamPojistenis" asp-action="Create" asp-route-id="@Model?.ID">Přidat pojištění</a> |
-        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ID">Editace klienta</a> |
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model?.ID" asp-route-returnUrl="@Context.Request.Path">Editace klienta</a> |
         <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model?.ID">Odstranit klienta</a>
     </div>
     <br />
